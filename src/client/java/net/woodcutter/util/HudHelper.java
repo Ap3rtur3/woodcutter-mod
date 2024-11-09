@@ -24,8 +24,8 @@ public class HudHelper {
             int screenHeight = drawContext.getScaledWindowHeight();
             int textWidth = client.textRenderer.getWidth(text);
             int textHeight = client.textRenderer.getWrappedLinesHeight(text, textWidth);
-            int x = isPositionedLeft(position) ? margin : (int) ((screenWidth - textWidth) * invFontScale) - margin;
-            int y = isPositionedTop(position) ? margin : (int) ((screenHeight - textHeight) * invFontScale) - margin;
+            int x = isPositionedLeft(position) ? margin : (int) (screenWidth * invFontScale - textWidth) - margin;
+            int y = isPositionedTop(position) ? margin : (int) (screenHeight  * invFontScale - textHeight) - margin;
             drawContext.drawText(client.textRenderer, text, x, y, color, shadow);
         });
     }

@@ -9,6 +9,8 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.text.Text;
 import net.woodcutter.config.WoodcutterConfig;
 import net.woodcutter.util.HudHelper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.Field;
 import java.util.List;
@@ -19,6 +21,7 @@ public class CoordsHud {
     public static final int TEXT_MARGIN = 1;
     public static final float FONT_SCALE_MIN = .6F;
     public static final float FONT_SCALE_STEP = .2F;
+    private static final Logger log = LoggerFactory.getLogger(CoordsHud.class);
 
     public static void register(GuiRegistry guiRegistry) {
         guiRegistry.registerPredicateTransformer(
@@ -55,14 +58,16 @@ public class CoordsHud {
                         .setDefaultValue((WoodcutterConfig.Position) dropdown.getDefaultValue().orElse(WoodcutterConfig.Position.TOP_LEFT))
                         .setSaveConsumer(p -> {
                             try {
-                                field.set(getConfig(), p);
-                            } catch (IllegalAccessException ignored) { }
+                                field.set(getConfig().coordsHud, p);
+                            } catch (IllegalAccessException e) {
+                                log.error("Could not set position in cords hud", e);
+                            }
                         })
                         .setEnumNameProvider(perspective -> switch ((WoodcutterConfig.Position) perspective) {
-                            case TOP_LEFT -> Text.translatable("text.autoconfig.woodcutter-mod.option.position.TOP_LEFT");
-                            case TOP_RIGHT -> Text.translatable("text.autoconfig.woodcutter-mod.option.position.TOP_RIGHT");
-                            case BOTTOM_LEFT -> Text.translatable("text.autoconfig.woodcutter-mod.option.position.BOTTOM_LEFT");
-                            case BOTTOM_RIGHT -> Text.translatable("text.autoconfig.woodcutter-mod.option.position.BOTTOM_RIGHT");
+                            case TOP_LEFT -> Text.translatable("text.autoconfig.woodcutter-mod.option.coordsHud.position.TOP_LEFT");
+                            case TOP_RIGHT -> Text.translatable("text.autoconfig.woodcutter-mod.option.coordsHud.position.TOP_RIGHT");
+                            case BOTTOM_LEFT -> Text.translatable("text.autoconfig.woodcutter-mod.option.coordsHud.position.BOTTOM_LEFT");
+                            case BOTTOM_RIGHT -> Text.translatable("text.autoconfig.woodcutter-mod.option.coordsHud.position.BOTTOM_RIGHT");
                         })
                         .build())
                 .map(AbstractConfigListEntry.class::cast)
