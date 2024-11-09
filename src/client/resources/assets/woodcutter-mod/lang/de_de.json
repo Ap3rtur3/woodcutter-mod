@@ -1,0 +1,20 @@
+{
+  "text.autoconfig.woodcutter-mod.title": "Woodcutter Mod Einstellungen",
+  "text.autoconfig.woodcutter-mod.option.coordsHud": "Coords HUD",
+  "text.autoconfig.woodcutter-mod.option.coordsHud.enabled": "Koordinaten anzeigen",
+  "text.autoconfig.woodcutter-mod.option.coordsHud.enabled.@Tooltip": "Schaltet Anzeige der Koordinaten an und aus",
+  "text.autoconfig.woodcutter-mod.option.coordsHud.fontSize": "Schriftgröße",
+  "text.autoconfig.woodcutter-mod.option.coordsHud.fontSize.@Tooltip": "Schriftgröße der Koordinaten",
+  "text.autoconfig.woodcutter-mod.option.coordsHud.fontColor": "Schriftfarbe",
+  "text.autoconfig.woodcutter-mod.option.coordsHud.fontColor.@Tooltip": "Schriftfarbe in hexadezimal Form 0xAARRGGBB (0xffffffff = weiß)",
+  "text.autoconfig.woodcutter-mod.option.coordsHud.position": "Position",
+  "text.autoconfig.woodcutter-mod.option.coordsHud.position.@Tooltip": "Position der Koordinaten auf Bildschirm",
+  "text.autoconfig.woodcutter-mod.option.coordsHud.position.TOP_LEFT": "Oben links",
+  "text.autoconfig.woodcutter-mod.option.coordsHud.position.TOP_RIGHT": "Oben rechts",
+  "text.autoconfig.woodcutter-mod.option.coordsHud.position.BOTTOM_LEFT": "Unten links",
+  "text.autoconfig.woodcutter-mod.option.coordsHud.position.BOTTOM_RIGHT": "Unten rechts",
+  "text.autoconfig.woodcutter-mod.option.rulerHud": "Ruler HUD",
+  "text.autoconfig.woodcutter-mod.option.rulerHud.enabled": "Enabled",
+  "key.woodcutter-mod.mark-block": "Markiert Block für Lineal",
+  "category.woodcutter-mod.ruler": "Lineal"
+}

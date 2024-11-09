@@ -1,0 +1,54 @@
+{
+	"schemaVersion": 1,
+	"id": "woodcutter-mod",
+	"version": "${version}",
+	"name": "Woodcutter Mod",
+	"description": "Enables wood proccessing with stonecutter",
+	"authors": [
+		"ap3rtur3"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/woodcutter-mod/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"net.woodcutter.WoodcutterMod"
+		],
+		"client": [
+			"net.woodcutter.WoodcutterModClient"
+		],
+		"modmenu": [
+			"net.woodcutter.compat.ModMenuCompat"
+		],
+		"fabric-datagen": [
+			"net.woodcutter.WoodcutterModDataGenerator"
+		]
+	},
+	"mixins": [
+		"woodcutter-mod.mixins.json",
+		{
+			"config": "woodcutter-mod.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=${loader}",
+		"minecraft": "~${minecraft}",
+		"java": ">=21",
+		"fabric-api": "*",
+		"fabric-key-binding-api-v1": "*"
+	},
+	"suggests": {
+		"modmenu": "${modmenu}",
+		"cloth": "${cloth}"
+	},
+	"custom": {
+		"modmenu": {
+			"update_checker": false
+		}
+	}
+}
