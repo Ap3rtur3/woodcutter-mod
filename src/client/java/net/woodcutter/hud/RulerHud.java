@@ -1,6 +1,5 @@
 package net.woodcutter.hud;
 
-import me.shedaniel.autoconfig.gui.registry.GuiRegistry;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
@@ -26,20 +25,14 @@ public class RulerHud {
 
     private static final Logger log = LoggerFactory.getLogger(MOD_ID);
     private static final MarkedBlocks markedBlocks = new MarkedBlocks();
-    private static KeyBinding keyBinding;
+    private static KeyBinding keyBinding = null;
 
-    public static void register(GuiRegistry guiRegistry) {
-        keyBinding = KeyBindingHelper.registerKeyBinding(new KeyBinding(
-                "key.woodcutter-mod.mark-block",
-                InputUtil.Type.KEYSYM,
-                GLFW.GLFW_KEY_V,
-                "category.woodcutter-mod.ruler"
-        ));
+    public static void register() {
+        registerKeybinding();
 
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             while (keyBinding.wasPressed()) {
                 assert client.player != null;
-                client.player.sendMessage(Text.literal("V was pressed!"), false);
                 markedBlocks.addMarker();
             }
         });
@@ -83,6 +76,17 @@ public class RulerHud {
     private static boolean isEnabled() {
         MinecraftClient client = MinecraftClient.getInstance();
         return getConfig().rulerHud.enabled && client.world != null && client.cameraEntity != null;
+    }
+
+    private static void registerKeybinding() {
+        if (keyBinding == null) {
+            keyBinding = KeyBindingHelper.registerKeyBinding(new KeyBinding(
+                    "key.woodcutter-mod.mark-block",
+                    InputUtil.Type.KEYSYM,
+                    GLFW.GLFW_KEY_PERIOD,
+                    "category.woodcutter-mod.ruler"
+            ));
+        }
     }
 
     static class MarkedBlocks {

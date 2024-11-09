@@ -19,23 +19,20 @@ public class WoodcutterConfig implements ConfigData {
     }
 
     public static class CoordsHud {
-        @ConfigEntry.Gui.Tooltip
         public boolean enabled = true;
 
-        @ConfigEntry.Gui.Tooltip
         @ConfigEntry.BoundedDiscrete(min = 1, max = 4)
         public int fontSize = 2;
 
+        @ConfigEntry.Gui.Tooltip
         @ConfigEntry.ColorPicker
         public int fontColor = 0xFFFFFF;
 
-        @ConfigEntry.Gui.Tooltip
         //@ConfigEntry.Gui.EnumHandler(option = ConfigEntry.Gui.EnumHandler.EnumDisplayOption.BUTTON)
         public Position position = Position.TOP_LEFT;
     }
 
     public static class RulerHud {
-        @ConfigEntry.Gui.Tooltip
         public boolean enabled = false;
     }
 
