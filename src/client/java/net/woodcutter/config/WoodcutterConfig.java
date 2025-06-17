@@ -4,6 +4,7 @@ import me.shedaniel.autoconfig.ConfigData;
 import me.shedaniel.autoconfig.annotation.Config;
 import me.shedaniel.autoconfig.annotation.ConfigEntry;
 import net.woodcutter.WoodcutterMod;
+import org.lwjgl.glfw.GLFW;
 
 @Config(name = WoodcutterMod.MOD_ID)
 @Config.Gui.Background("cloth-config2:transparent")
@@ -34,6 +35,8 @@ public class WoodcutterConfig implements ConfigData {
 
     public static class RulerHud {
         public boolean enabled = false;
+
+        public int keyBinding = GLFW.GLFW_KEY_PERIOD;
     }
 
     @ConfigEntry.Gui.CollapsibleObject(startExpanded = true)

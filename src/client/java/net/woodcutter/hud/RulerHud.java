@@ -17,6 +17,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Objects;
+import java.util.Optional;
 
 import static net.woodcutter.WoodcutterMod.MOD_ID;
 import static net.woodcutter.WoodcutterModClient.getConfig;
@@ -50,6 +51,22 @@ public class RulerHud {
         });
     }
 
+    private static void registerKeybinding() {
+        if (keyBinding == null) {
+            keyBinding = KeyBindingHelper.registerKeyBinding(getMarkerKeyBinding());
+        }
+    }
+
+    private static KeyBinding getMarkerKeyBinding() {
+        int key = Optional.of(getConfig().rulerHud.keyBinding).orElse(GLFW.GLFW_KEY_PERIOD);
+        return new KeyBinding(
+                "key.woodcutter-mod.mark-block",
+                InputUtil.Type.KEYSYM,
+                key,
+                "category.woodcutter-mod.ruler"
+        );
+    }
+
     private static void markLookedAtBlock() {
         MinecraftClient client = MinecraftClient.getInstance();
         assert client.world != null;
@@ -66,8 +83,6 @@ public class RulerHud {
             case HitResult.Type.BLOCK:
                 BlockHitResult blockHit = (BlockHitResult) hit;
                 BlockPos blockPos = blockHit.getBlockPos();
-                //BlockState blockState = client.world.getBlockState(blockPos);
-                //Block block = blockState.getBlock();
                 markedBlocks.setEnd(blockPos);
                 break;
         }
@@ -76,17 +91,6 @@ public class RulerHud {
     private static boolean isEnabled() {
         MinecraftClient client = MinecraftClient.getInstance();
         return getConfig().rulerHud.enabled && client.world != null && client.cameraEntity != null;
-    }
-
-    private static void registerKeybinding() {
-        if (keyBinding == null) {
-            keyBinding = KeyBindingHelper.registerKeyBinding(new KeyBinding(
-                    "key.woodcutter-mod.mark-block",
-                    InputUtil.Type.KEYSYM,
-                    GLFW.GLFW_KEY_PERIOD,
-                    "category.woodcutter-mod.ruler"
-            ));
-        }
     }
 
     static class MarkedBlocks {
@@ -146,7 +150,6 @@ public class RulerHud {
                 reset();
             } else if (start == null) {
                 start = end;
-                log.info("Added marker: {}", start.toShortString());
             } else if (locked) {
                 reset();
             } else if (end == start) {

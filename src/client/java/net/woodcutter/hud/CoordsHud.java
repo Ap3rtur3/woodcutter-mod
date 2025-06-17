@@ -24,6 +24,7 @@ public class CoordsHud {
     private static final Logger log = LoggerFactory.getLogger(CoordsHud.class);
 
     public static void register(GuiRegistry guiRegistry) {
+        // Transforms position field to enum list, this fixes translations in button
         guiRegistry.registerPredicateTransformer(
                 (guis, i18n, field, config, defaults, registry) -> CoordsHud.dropdownToEnumList(guis, field), 
                 field -> field.getName().equals("position"));
