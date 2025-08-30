@@ -2,17 +2,17 @@ package net.woodcutter.util;
 
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
-import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.Text;
 import net.woodcutter.config.WoodcutterConfig;
+import org.joml.Matrix3x2fStack;
 
 public class HudHelper {
 
     public static void withMatrixStack(DrawContext drawContext, MatrixStackCallback callback) {
         var matrixStack = drawContext.getMatrices();
-        matrixStack.push();
+        matrixStack.pushMatrix();
         callback.run(matrixStack);
-        matrixStack.pop();
+        matrixStack.popMatrix();
     }
 
     /**
@@ -29,7 +29,7 @@ public class HudHelper {
     public static void drawTextOnPosition(DrawContext drawContext, Text text, WoodcutterConfig.Position position, int margin, float scale, int color, boolean shadow) {
         MinecraftClient client = MinecraftClient.getInstance();
         withMatrixStack(drawContext, (matrixStack) -> {
-            matrixStack.scale(scale, scale, scale);
+            matrixStack.scale(scale, scale);
             float invFontScale = 1F / scale;
             int screenWidth = drawContext.getScaledWindowWidth();
             int screenHeight = drawContext.getScaledWindowHeight();
@@ -58,7 +58,7 @@ public class HudHelper {
     public static void drawScaledTextFromOrigin(DrawContext drawContext, Text text, WoodcutterConfig.Position origin, float x, float y, int margin, float scale, int color, boolean shadow) {
         MinecraftClient client = MinecraftClient.getInstance();
         withMatrixStack(drawContext, (matrixStack) -> {
-            matrixStack.scale(scale, scale, scale);
+            matrixStack.scale(scale, scale);
             float invFontScale = 1F / scale;
             float screenWidth = drawContext.getScaledWindowWidth() * invFontScale;
             float screenHeight = drawContext.getScaledWindowHeight() * invFontScale;
@@ -89,7 +89,7 @@ public class HudHelper {
     }
 
     public interface MatrixStackCallback {
-        void run(MatrixStack matrixStack);
+        void run(Matrix3x2fStack matrixStack);
     }
 
 }

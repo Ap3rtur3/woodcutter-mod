@@ -42,7 +42,8 @@ TODO: Better documentation, not just rtfm. List requirements and install guide.
     ```
 
 2. Migrate mappings to latest version, refer to the [docs](https://fabricmc.net/develop/). 
-    This creates a folder named `remappedSrc`, which contains source files, that adhere to core/API changes.
+    This creates a folder named `remappedSrc`, which contains source files that adhere to core/API changes.
+    Copy them and overrwite the original source files.
     ```bash
     # Replace 1.21.8+build.1 with latest recommended version
     ./gradlew migrateMappings --mappings "1.21.8+build.1"
