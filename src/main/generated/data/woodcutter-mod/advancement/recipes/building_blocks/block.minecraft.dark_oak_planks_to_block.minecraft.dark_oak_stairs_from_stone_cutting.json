@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:block.minecraft.dark_oak_planks_to_block.minecraft.dark_oak_stairs_from_stone_cutting"
+        "recipe": "woodcutter-mod:block.minecraft.dark_oak_planks_to_block.minecraft.dark_oak_stairs_from_stone_cutting"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "minecraft:block.minecraft.dark_oak_planks_to_block.minecraft.dark_oak_stairs_from_stone_cutting"
+      "woodcutter-mod:block.minecraft.dark_oak_planks_to_block.minecraft.dark_oak_stairs_from_stone_cutting"
     ]
   }
 }

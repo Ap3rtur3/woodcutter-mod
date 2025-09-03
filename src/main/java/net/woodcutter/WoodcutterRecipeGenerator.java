@@ -41,6 +41,7 @@ public class WoodcutterRecipeGenerator extends FabricRecipeProvider {
                 woodcuttingRecipes.addAll(generateWoodcutterRecipePairs(Blocks.JUNGLE_LOG, Blocks.STRIPPED_JUNGLE_LOG, Blocks.JUNGLE_PLANKS, Blocks.JUNGLE_STAIRS, Blocks.JUNGLE_SLAB));
                 woodcuttingRecipes.addAll(generateWoodcutterRecipePairs(Blocks.MANGROVE_LOG, Blocks.STRIPPED_MANGROVE_LOG, Blocks.MANGROVE_PLANKS, Blocks.MANGROVE_STAIRS, Blocks.MANGROVE_SLAB));
                 woodcuttingRecipes.addAll(generateWoodcutterRecipePairs(Blocks.OAK_LOG, Blocks.STRIPPED_OAK_LOG, Blocks.OAK_PLANKS, Blocks.OAK_STAIRS, Blocks.OAK_SLAB));
+                woodcuttingRecipes.addAll(generateWoodcutterRecipePairs(Blocks.PALE_OAK_LOG, Blocks.STRIPPED_PALE_OAK_LOG, Blocks.PALE_OAK_PLANKS, Blocks.PALE_OAK_STAIRS, Blocks.PALE_OAK_SLAB));
                 woodcuttingRecipes.addAll(generateWoodcutterRecipePairs(Blocks.SPRUCE_LOG, Blocks.STRIPPED_SPRUCE_LOG, Blocks.SPRUCE_PLANKS, Blocks.SPRUCE_STAIRS, Blocks.SPRUCE_SLAB));
                 woodcuttingRecipes.addAll(generateWoodcutterRecipePairs(Blocks.WARPED_STEM, Blocks.STRIPPED_WARPED_STEM, Blocks.WARPED_PLANKS, Blocks.WARPED_STAIRS, Blocks.WARPED_SLAB));
                 woodcuttingRecipes.forEach(recipePair -> {
