@@ -14,15 +14,16 @@ Useful Docs:
 
 ## Features
 
-* Woodcutter recipes
-* Coordinates on screen without F3 or Xaeros minimap
+* Woodcutter recipes: Stonecutter can also process wood
+* Coordinates HUD: Customizable coordinates on screen without F3 or Xaeros minimap
 
 #### Planned
 
 Some ideas for future features, may not be implemented.
 
 * Ruler HUD to display distance between blocks and other helpers for building
-* More recipes, needs opt-in config
+  * Mark two blocks to see position and distance
+* More recipes, needs opt-in config to not interfere with vanilla
   * Reinforced Deepslate
 
 ## Setup
@@ -30,7 +31,7 @@ Some ideas for future features, may not be implemented.
 https://docs.fabricmc.net/develop/getting-started/introduction-to-fabric-and-modding
 https://docs.fabricmc.net/develop/getting-started/setting-up-a-development-environment
 
-TODO: Better documentation, not just rtfm. List requirements and install guide.
+TODO: Better documentation, not just RTFM. -> List requirements and install guide.
 
 ## Updating
 
