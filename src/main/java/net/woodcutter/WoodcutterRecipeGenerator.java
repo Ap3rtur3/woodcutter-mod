@@ -2,11 +2,12 @@ package net.woodcutter;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
-import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.data.recipe.RecipeExporter;
 import net.minecraft.data.recipe.RecipeGenerator;
 import net.minecraft.data.recipe.StonecuttingRecipeJsonBuilder;
+import net.minecraft.item.ItemConvertible;
+import net.minecraft.item.Items;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.registry.RegistryWrapper;
@@ -32,52 +33,80 @@ public class WoodcutterRecipeGenerator extends FabricRecipeProvider {
             @Override
             public void generate() {
                 var woodcuttingRecipes = new ArrayList<RecipePair>();
-                woodcuttingRecipes.addAll(generateWoodcutterRecipePairs(Blocks.ACACIA_LOG, Blocks.STRIPPED_ACACIA_LOG, Blocks.ACACIA_PLANKS, Blocks.ACACIA_STAIRS, Blocks.ACACIA_SLAB));
-                woodcuttingRecipes.addAll(generateWoodcutterRecipePairs(Blocks.BAMBOO_BLOCK, Blocks.STRIPPED_BAMBOO_BLOCK, Blocks.BAMBOO_PLANKS, Blocks.BAMBOO_STAIRS, Blocks.BAMBOO_SLAB));
-                woodcuttingRecipes.addAll(generateWoodcutterRecipePairs(Blocks.BIRCH_LOG, Blocks.STRIPPED_BIRCH_LOG, Blocks.BIRCH_PLANKS, Blocks.BIRCH_STAIRS, Blocks.BIRCH_SLAB));
-                woodcuttingRecipes.addAll(generateWoodcutterRecipePairs(Blocks.CHERRY_LOG, Blocks.STRIPPED_CHERRY_LOG, Blocks.CHERRY_PLANKS, Blocks.CHERRY_STAIRS, Blocks.CHERRY_SLAB));
-                woodcuttingRecipes.addAll(generateWoodcutterRecipePairs(Blocks.CRIMSON_STEM, Blocks.STRIPPED_CRIMSON_STEM, Blocks.CRIMSON_PLANKS, Blocks.CRIMSON_STAIRS, Blocks.CRIMSON_SLAB));
-                woodcuttingRecipes.addAll(generateWoodcutterRecipePairs(Blocks.DARK_OAK_LOG, Blocks.STRIPPED_DARK_OAK_LOG, Blocks.DARK_OAK_PLANKS, Blocks.DARK_OAK_STAIRS, Blocks.DARK_OAK_SLAB));
-                woodcuttingRecipes.addAll(generateWoodcutterRecipePairs(Blocks.JUNGLE_LOG, Blocks.STRIPPED_JUNGLE_LOG, Blocks.JUNGLE_PLANKS, Blocks.JUNGLE_STAIRS, Blocks.JUNGLE_SLAB));
-                woodcuttingRecipes.addAll(generateWoodcutterRecipePairs(Blocks.MANGROVE_LOG, Blocks.STRIPPED_MANGROVE_LOG, Blocks.MANGROVE_PLANKS, Blocks.MANGROVE_STAIRS, Blocks.MANGROVE_SLAB));
-                woodcuttingRecipes.addAll(generateWoodcutterRecipePairs(Blocks.OAK_LOG, Blocks.STRIPPED_OAK_LOG, Blocks.OAK_PLANKS, Blocks.OAK_STAIRS, Blocks.OAK_SLAB));
-                woodcuttingRecipes.addAll(generateWoodcutterRecipePairs(Blocks.PALE_OAK_LOG, Blocks.STRIPPED_PALE_OAK_LOG, Blocks.PALE_OAK_PLANKS, Blocks.PALE_OAK_STAIRS, Blocks.PALE_OAK_SLAB));
-                woodcuttingRecipes.addAll(generateWoodcutterRecipePairs(Blocks.SPRUCE_LOG, Blocks.STRIPPED_SPRUCE_LOG, Blocks.SPRUCE_PLANKS, Blocks.SPRUCE_STAIRS, Blocks.SPRUCE_SLAB));
-                woodcuttingRecipes.addAll(generateWoodcutterRecipePairs(Blocks.WARPED_STEM, Blocks.STRIPPED_WARPED_STEM, Blocks.WARPED_PLANKS, Blocks.WARPED_STAIRS, Blocks.WARPED_SLAB));
-                woodcuttingRecipes.forEach(recipePair -> {
-                    StonecuttingRecipeJsonBuilder.createStonecutting(Ingredient.ofItems(recipePair.input), RecipeCategory.BUILDING_BLOCKS, recipePair.output, recipePair.count)
-                            .criterion("has_input_block", conditionsFromItem(recipePair.input))
-                            .offerTo(recipeExporter, String.format("%s_to_%s_from_stone_cutting", recipePair.input.getTranslationKey(), recipePair.output.getTranslationKey()));
-                });
+                try {
+                    woodcuttingRecipes.addAll(generateWoodcutterRecipePairsFrom("ACACIA"));
+                    woodcuttingRecipes.addAll(generateWoodcutterRecipePairsFrom("BIRCH"));
+                    woodcuttingRecipes.addAll(generateWoodcutterRecipePairsFrom("CHERRY"));
+                    woodcuttingRecipes.addAll(generateWoodcutterRecipePairsFrom("CRIMSON"));
+                    woodcuttingRecipes.addAll(generateWoodcutterRecipePairsFrom("DARK_OAK"));
+                    woodcuttingRecipes.addAll(generateWoodcutterRecipePairsFrom("JUNGLE"));
+                    woodcuttingRecipes.addAll(generateWoodcutterRecipePairsFrom("MANGROVE"));
+                    woodcuttingRecipes.addAll(generateWoodcutterRecipePairsFrom("OAK"));
+                    woodcuttingRecipes.addAll(generateWoodcutterRecipePairsFrom("PALE_OAK"));
+                    woodcuttingRecipes.addAll(generateWoodcutterRecipePairsFrom("SPRUCE"));
+                    woodcuttingRecipes.addAll(generateWoodcutterRecipePairsFrom("WARPED"));
+                } catch (NoSuchFieldException | IllegalAccessException e) {
+                    LOGGER.error("Something bad happened...");
+                    throw new RuntimeException(e);
+                }
+                generateStonecuttingRecipes(woodcuttingRecipes);
+            }
+
+            private void generateStonecuttingRecipes(List<RecipePair> recipes) {
+                recipes.forEach(recipePair -> StonecuttingRecipeJsonBuilder.createStonecutting(Ingredient.ofItem(recipePair.input), RecipeCategory.BUILDING_BLOCKS, recipePair.output, recipePair.count)
+                        .criterion("has_input_block", conditionsFromItem(recipePair.input))
+                        .offerTo(recipeExporter, recipePair.recipePath()));
             }
         };
     }
 
-    private List<RecipePair> generateWoodcutterRecipePairs(Block log, Block stripped, Block planks, Block stairs, Block slab) {
+    private List<RecipePair> generateWoodcutterRecipePairsFrom(String name) throws NoSuchFieldException, IllegalAccessException {
+        var logName = name + "_LOG";
+        if (List.of("CRIMSON", "WARPED").contains(name)) {
+            logName = name + "_STEM";
+        }
+        var log = (ItemConvertible) Blocks.class.getDeclaredField(logName).get(Blocks.class);
+        var stripped = (ItemConvertible) Blocks.class.getDeclaredField("STRIPPED_" + logName).get(Blocks.class);
+        var planks = (ItemConvertible) Blocks.class.getDeclaredField(name + "_PLANKS").get(Blocks.class);
+        var stairs = (ItemConvertible) Blocks.class.getDeclaredField(name + "_STAIRS").get(Blocks.class);
+        var slab = (ItemConvertible) Blocks.class.getDeclaredField(name + "_SLAB").get(Blocks.class);
+        var door = (ItemConvertible) Blocks.class.getDeclaredField(name + "_DOOR").get(Blocks.class);
+        var trapdoor = (ItemConvertible) Blocks.class.getDeclaredField(name + "_TRAPDOOR").get(Blocks.class);
+        return generateWoodcutterRecipePairs(log, stripped, planks, stairs, slab, door, trapdoor);
+    }
+
+    private List<RecipePair> generateWoodcutterRecipePairs(ItemConvertible log, ItemConvertible stripped, ItemConvertible planks, ItemConvertible stairs, ItemConvertible slab, ItemConvertible door, ItemConvertible trapdoor) {
         return List.of(
                 RecipePair.of(log, stripped),
                 RecipePair.of(log, planks, 4),
                 RecipePair.of(planks, stairs),
-                RecipePair.of(planks, slab, 2));
+                RecipePair.of(planks, slab, 2),
+                RecipePair.of(planks, Items.STICK, 2),
+                RecipePair.of(slab, Items.STICK)
+        );
     }
 
     static class RecipePair {
-        Block input;
-        Block output;
+        ItemConvertible input;
+        ItemConvertible output;
         int count;
 
-        public RecipePair(Block input, Block output, int count) {
+        public RecipePair(ItemConvertible input, ItemConvertible output, int count) {
             this.input = input;
             this.output = output;
             this.count = count;
         }
 
-        public static RecipePair of(Block input, Block output) {
+        public static RecipePair of(ItemConvertible input, ItemConvertible output) {
             return of(input, output, 1);
         }
 
-        public static RecipePair of(Block input, Block output, int count) {
+        public static RecipePair of(ItemConvertible input, ItemConvertible output, int count) {
             return new RecipePair(input, output, count);
+        }
+
+        public String recipePath() {
+            return String.format("%s_to_%s_from_stone_cutting", input.asItem().getTranslationKey(), output.asItem().getTranslationKey());
         }
     }
 }

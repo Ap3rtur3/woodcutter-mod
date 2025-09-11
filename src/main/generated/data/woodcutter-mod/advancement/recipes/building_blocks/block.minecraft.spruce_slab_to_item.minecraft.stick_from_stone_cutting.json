@@ -5,7 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": "minecraft:bamboo_block"
+            "items": "minecraft:spruce_slab"
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "woodcutter-mod:block.minecraft.bamboo_block_to_block.minecraft.stripped_bamboo_block_from_stone_cutting"
+        "recipe": "woodcutter-mod:block.minecraft.spruce_slab_to_item.minecraft.stick_from_stone_cutting"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "woodcutter-mod:block.minecraft.bamboo_block_to_block.minecraft.stripped_bamboo_block_from_stone_cutting"
+      "woodcutter-mod:block.minecraft.spruce_slab_to_item.minecraft.stick_from_stone_cutting"
     ]
   }
 }
