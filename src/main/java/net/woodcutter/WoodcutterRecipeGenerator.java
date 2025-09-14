@@ -79,6 +79,9 @@ public class WoodcutterRecipeGenerator extends FabricRecipeProvider {
         return List.of(
                 RecipePair.of(log, stripped),
                 RecipePair.of(log, planks, 4),
+                RecipePair.of(log, door, 3),
+                RecipePair.of(log, trapdoor, 3),
+                RecipePair.of(stripped, planks, 4),
                 RecipePair.of(planks, stairs),
                 RecipePair.of(planks, slab, 2),
                 RecipePair.of(planks, Items.STICK, 2),
