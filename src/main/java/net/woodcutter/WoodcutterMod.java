@@ -7,10 +7,15 @@ import org.slf4j.LoggerFactory;
 
 public class WoodcutterMod implements ModInitializer {
 	public static final String MOD_ID = "woodcutter-mod";
-	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
+	public static final Logger LOGGER = logger("init");
+
+	public static Logger logger(String name) {
+		return LoggerFactory.getLogger(String.format("%s/%s", MOD_ID, name));
+	}
 
 	@Override
 	public void onInitialize() {
-		LOGGER.info("Hello Fabric world!");
+		LOGGER.info("Loading woodcutter mod");
+		ModItems.initialize();
 	}
 }

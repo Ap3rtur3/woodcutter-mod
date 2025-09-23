@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": "woodcutter:deepslate_ingot",
+    "m": "woodcutter:mended_sculk"
+  },
+  "pattern": [
+    "###",
+    "#m#",
+    "###"
+  ],
+  "result": {
+    "count": 1,
+    "id": "woodcutter:mended_deepslate"
+  }
+}

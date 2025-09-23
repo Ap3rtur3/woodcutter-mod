@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "#": "woodcutter:hardened_deepslate",
+    "i": "minecraft:iron_ingot",
+    "o": "minecraft:obsidian"
+  },
+  "pattern": [
+    "i#i",
+    "#o#",
+    "i#i"
+  ],
+  "result": {
+    "count": 1,
+    "id": "minecraft:reinforced_deepslate"
+  }
+}

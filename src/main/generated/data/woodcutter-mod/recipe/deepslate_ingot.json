@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 60,
+  "experience": 1.0,
+  "ingredient": "minecraft:deepslate",
+  "result": {
+    "id": "woodcutter:deepslate_ingot"
+  }
+}

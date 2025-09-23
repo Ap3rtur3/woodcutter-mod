@@ -25,7 +25,7 @@
 			"net.woodcutter.compat.ModMenuCompat"
 		],
 		"fabric-datagen": [
-			"net.woodcutter.WoodcutterModDataGenerator"
+			"net.woodcutter.generators.EntryPoint"
 		]
 	},
 	"mixins": [
