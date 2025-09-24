@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "woodcutter-mod:item/mended_sculk"
+    "layer0": "woodcutter:item/mended_sculk"
   }
 }

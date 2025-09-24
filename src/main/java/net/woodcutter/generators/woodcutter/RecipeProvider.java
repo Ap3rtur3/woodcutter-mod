@@ -1,4 +1,4 @@
-package net.woodcutter.generators;
+package net.woodcutter.generators.woodcutter;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
@@ -16,9 +16,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
-public class WoodcutterRecipeGenerator extends FabricRecipeProvider {
+public class RecipeProvider extends FabricRecipeProvider {
 
-    WoodcutterRecipeGenerator(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
+    public RecipeProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
         super(output, registriesFuture);
     }
 
@@ -61,10 +61,7 @@ public class WoodcutterRecipeGenerator extends FabricRecipeProvider {
     }
 
     private List<RecipePair> generateWoodcutterRecipePairsFrom(String name) throws NoSuchFieldException, IllegalAccessException {
-        var logName = name + "_LOG";
-        if (List.of("CRIMSON", "WARPED").contains(name)) {
-            logName = name + "_STEM";
-        }
+        var logName = List.of("CRIMSON", "WARPED").contains(name) ? name + "_STEM" : name + "_LOG";
         var log = (ItemConvertible) Blocks.class.getDeclaredField(logName).get(Blocks.class);
         var stripped = (ItemConvertible) Blocks.class.getDeclaredField("STRIPPED_" + logName).get(Blocks.class);
         var planks = (ItemConvertible) Blocks.class.getDeclaredField(name + "_PLANKS").get(Blocks.class);

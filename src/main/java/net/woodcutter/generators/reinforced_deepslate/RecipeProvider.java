@@ -1,4 +1,4 @@
-package net.woodcutter.generators;
+package net.woodcutter.generators.reinforced_deepslate;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
@@ -15,9 +15,9 @@ import java.util.concurrent.CompletableFuture;
 
 import static net.woodcutter.ModItems.*;
 
-public class ReinforcedDeepslateRecipeGenerator extends FabricRecipeProvider {
+public class RecipeProvider extends FabricRecipeProvider {
 
-    ReinforcedDeepslateRecipeGenerator(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
+    public RecipeProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
         super(output, registriesFuture);
     }
 
@@ -33,7 +33,7 @@ public class ReinforcedDeepslateRecipeGenerator extends FabricRecipeProvider {
             public void generate() {
                 // Smelt: Deepslate => Deepslate Ingot
                 CookingRecipeJsonBuilder.createSmelting(Ingredient.ofItem(Blocks.DEEPSLATE), RecipeCategory.MISC, DEEPSLATE_INGOT, 1.0F, 60)
-                        .criterion(hasItem(Items.DEEPSLATE), this.conditionsFromItem(Blocks.DEEPSLATE))
+                        .criterion(hasItem(Items.DEEPSLATE), conditionsFromItem(Blocks.DEEPSLATE))
                         .offerTo(recipeExporter);
 
                 // Craft: Sculk + Soul Sand + Gold Ingot => Mended Sculk
@@ -41,9 +41,9 @@ public class ReinforcedDeepslateRecipeGenerator extends FabricRecipeProvider {
                         .input(Items.SCULK)
                         .input(Items.SOUL_SAND)
                         .input(Items.GOLD_INGOT)
-                        .criterion(hasItem(Items.SCULK), this.conditionsFromItem(Items.SCULK))
-                        .criterion(hasItem(Items.SOUL_SAND), this.conditionsFromItem(Items.SOUL_SAND))
-                        .criterion(hasItem(Items.GOLD_INGOT), this.conditionsFromItem(Items.GOLD_INGOT))
+                        .criterion(hasItem(Items.SCULK), conditionsFromItem(Items.SCULK))
+                        .criterion(hasItem(Items.SOUL_SAND), conditionsFromItem(Items.SOUL_SAND))
+                        .criterion(hasItem(Items.GOLD_INGOT), conditionsFromItem(Items.GOLD_INGOT))
                         .offerTo(recipeExporter);
 
                 // Craft: Deepslate Ingot x8 + Mended Sculk => Mended Deepslate
@@ -53,13 +53,13 @@ public class ReinforcedDeepslateRecipeGenerator extends FabricRecipeProvider {
                         .pattern("###")
                         .pattern("#m#")
                         .pattern("###")
-                        .criterion(hasItem(DEEPSLATE_INGOT), this.conditionsFromItem(DEEPSLATE_INGOT))
-                        .criterion(hasItem(MENDED_SCULK), this.conditionsFromItem(MENDED_SCULK))
+                        .criterion(hasItem(DEEPSLATE_INGOT), conditionsFromItem(DEEPSLATE_INGOT))
+                        .criterion(hasItem(MENDED_SCULK), conditionsFromItem(MENDED_SCULK))
                         .offerTo(recipeExporter);
 
                 // Blast: Mended Deepslate => Hardened Deepslate
                 CookingRecipeJsonBuilder.createBlasting(Ingredient.ofItem(MENDED_DEEPSLATE), RecipeCategory.BUILDING_BLOCKS, HARDENED_DEEPSLATE, 2.0F, 100)
-                        .criterion(hasItem(MENDED_DEEPSLATE), this.conditionsFromItem(MENDED_DEEPSLATE))
+                        .criterion(hasItem(MENDED_DEEPSLATE), conditionsFromItem(MENDED_DEEPSLATE))
                         .offerTo(recipeExporter);
 
                 // Craft: Hardened Deepslate x4 (sides) + Iron Ingot x4 (edges) + Obsidian (middle) => Reinforced Deepslate
@@ -70,9 +70,9 @@ public class ReinforcedDeepslateRecipeGenerator extends FabricRecipeProvider {
                         .pattern("i#i")
                         .pattern("#o#")
                         .pattern("i#i")
-                        .criterion(hasItem(HARDENED_DEEPSLATE), this.conditionsFromItem(HARDENED_DEEPSLATE))
-                        .criterion(hasItem(Items.IRON_INGOT), this.conditionsFromItem(Items.IRON_INGOT))
-                        .criterion(hasItem(Blocks.OBSIDIAN), this.conditionsFromItem(Blocks.OBSIDIAN))
+                        .criterion(hasItem(HARDENED_DEEPSLATE), conditionsFromItem(HARDENED_DEEPSLATE))
+                        .criterion(hasItem(Items.IRON_INGOT), conditionsFromItem(Items.IRON_INGOT))
+                        .criterion(hasItem(Blocks.OBSIDIAN), conditionsFromItem(Blocks.OBSIDIAN))
                         .offerTo(recipeExporter);
             }
         };

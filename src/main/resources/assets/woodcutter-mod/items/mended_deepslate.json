@@ -1,6 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "woodcutter-mod:item/mended_deepslate"
+    "model": "woodcutter:item/mended_deepslate"
   }
 }

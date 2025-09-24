@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "woodcutter-mod:block/mended_deepslate"
+      "model": "woodcutter:block/mended_deepslate"
     }
   }
 }

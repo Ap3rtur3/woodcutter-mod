@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "woodcutter-mod:block/hardened_deepslate"
+      "model": "woodcutter:block/hardened_deepslate"
     }
   }
 }

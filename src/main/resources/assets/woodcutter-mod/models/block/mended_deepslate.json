@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "woodcutter-mod:block/mended_deepslate"
+    "all": "woodcutter:block/mended_deepslate"
   }
 }
