@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_deepslate_ingot": {
+      "conditions": {
+        "items": [
+          {
+            "items": "woodcutter:deepslate_ingot"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_mended_sculk": {
+      "conditions": {
+        "items": [
+          {
+            "items": "woodcutter:mended_sculk"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "woodcutter:mended_deepslate"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_deepslate_ingot",
+      "has_mended_sculk"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "woodcutter:mended_deepslate"
+    ]
+  }
+}

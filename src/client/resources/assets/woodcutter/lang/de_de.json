@@ -1,0 +1,21 @@
+{
+  "text.autoconfig.woodcutter.title": "Woodcutter Mod Einstellungen",
+  "text.autoconfig.woodcutter.option.coordsHud": "Coords HUD",
+  "text.autoconfig.woodcutter.option.coordsHud.enabled": "Koordinaten anzeigen",
+  "text.autoconfig.woodcutter.option.coordsHud.fontSize": "Schriftgröße",
+  "text.autoconfig.woodcutter.option.coordsHud.fontColor": "Schriftfarbe",
+  "text.autoconfig.woodcutter.option.coordsHud.fontColor.@Tooltip": "Schriftfarbe in hexadezimal Form 0xAARRGGBB (0xffffffff = weiß)",
+  "text.autoconfig.woodcutter.option.coordsHud.position": "Position",
+  "text.autoconfig.woodcutter.option.coordsHud.position.TOP_LEFT": "Oben links",
+  "text.autoconfig.woodcutter.option.coordsHud.position.TOP_RIGHT": "Oben rechts",
+  "text.autoconfig.woodcutter.option.coordsHud.position.BOTTOM_LEFT": "Unten links",
+  "text.autoconfig.woodcutter.option.coordsHud.position.BOTTOM_RIGHT": "Unten rechts",
+  "text.autoconfig.woodcutter.option.rulerHud": "Ruler HUD",
+  "text.autoconfig.woodcutter.option.rulerHud.enabled": "Enabled",
+  "key.woodcutter.mark-block": "Markiert Block für Lineal",
+  "category.woodcutter.ruler": "Lineal",
+  "item.woodcutter.deepslate_ingot": "Deepslate Ingot",
+  "item.woodcutter.hardened_deepslate": "Hardened Deepslate",
+  "item.woodcutter-mod.mended_deepslate": "Mended Deepslate",
+  "item.woodcutter-mod.mended_sculk": "Mended Sculk"
+}

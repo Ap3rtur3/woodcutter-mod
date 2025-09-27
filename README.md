@@ -29,6 +29,7 @@ Some ideas for future features, may not be implemented.
 ## Setup
 
 https://docs.fabricmc.net/develop/getting-started/introduction-to-fabric-and-modding
+
 https://docs.fabricmc.net/develop/getting-started/setting-up-a-development-environment
 
 TODO: Better documentation, not just RTFM. -> List requirements and install guide.

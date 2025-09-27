@@ -6,7 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class WoodcutterMod implements ModInitializer {
-	public static final String MOD_ID = "woodcutter-mod";
+	public static final String MOD_ID = "woodcutter";
 	public static final Logger LOGGER = logger("init");
 
 	public static Logger logger(String name) {

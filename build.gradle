@@ -24,16 +24,17 @@ loom {
 	splitEnvironmentSourceSets()
 
 	mods {
-		"woodcutter-mod" {
+		"woodcutter" {
 			sourceSet sourceSets.main
 			sourceSet sourceSets.client
 		}
 	}
-
 }
 
 fabricApi {
-	configureDataGeneration()
+	configureDataGeneration() {
+		client = true
+	}
 }
 
 dependencies {
@@ -42,8 +43,6 @@ dependencies {
 	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 	implementation "com.google.code.gson:gson:${project.gson_version}"
-
-	// Fabric API
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 	modImplementation "com.terraformersmc:modmenu:${project.modmenu_version}"
 	modApi("me.shedaniel.cloth:cloth-config-fabric:${project.cloth_version}")
@@ -56,7 +55,7 @@ processResources {
 				"loader": project.loader_version,
 				"minecraft": project.minecraft_version,
 				"modmenu": project.modmenu_version,
-				"cloth": project.modmenu_version
+				"cloth": project.cloth_version
 		])
 	}
 }
@@ -79,6 +78,10 @@ jar {
 	from("LICENSE") {
 		rename { "${it}_${project.base.archivesName.get()}"}
 	}
+}
+
+sourcesJar {
+    duplicatesStrategy(DuplicatesStrategy.EXCLUDE)
 }
 
 // configure the maven publication

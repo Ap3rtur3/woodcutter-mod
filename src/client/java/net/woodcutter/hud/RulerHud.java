@@ -60,10 +60,10 @@ public class RulerHud {
     private static KeyBinding getMarkerKeyBinding() {
         int key = Optional.of(getConfig().rulerHud.keyBinding).orElse(GLFW.GLFW_KEY_PERIOD);
         return new KeyBinding(
-                "key.woodcutter-mod.mark-block",
+                "key.woodcutter.mark-block",
                 InputUtil.Type.KEYSYM,
                 key,
-                "category.woodcutter-mod.ruler"
+                "category.woodcutter.ruler"
         );
     }
 

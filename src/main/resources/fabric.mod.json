@@ -1,9 +1,9 @@
 {
 	"schemaVersion": 1,
-	"id": "woodcutter-mod",
+	"id": "woodcutter",
 	"version": "${version}",
 	"name": "Woodcutter Mod",
-	"description": "Enables wood proccessing with stonecutter",
+	"description": "Recipes for woodcutting and reinforced deepslate, and QoL changes.",
 	"authors": [
 		"ap3rtur3"
 	],
@@ -12,7 +12,7 @@
 		"sources": "https://github.com/FabricMC/fabric-example-mod"
 	},
 	"license": "CC0-1.0",
-	"icon": "assets/woodcutter-mod/icon.png",
+	"icon": "assets/woodcutter/icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"main": [
@@ -25,13 +25,13 @@
 			"net.woodcutter.compat.ModMenuCompat"
 		],
 		"fabric-datagen": [
-			"net.woodcutter.generators.EntryPoint"
+			"net.woodcutter.datagen.ClientEntryPoint"
 		]
 	},
 	"mixins": [
-		"woodcutter-mod.mixins.json",
+		"woodcutter.mixins.json",
 		{
-			"config": "woodcutter-mod.client.mixins.json",
+			"config": "woodcutter.client.mixins.json",
 			"environment": "client"
 		}
 	],

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_mended_deepslate": {
+      "conditions": {
+        "items": [
+          {
+            "items": "woodcutter:mended_deepslate"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "woodcutter:hardened_deepslate"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_mended_deepslate"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "woodcutter:hardened_deepslate"
+    ]
+  }
+}
