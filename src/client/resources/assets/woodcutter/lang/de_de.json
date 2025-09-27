@@ -16,6 +16,6 @@
   "category.woodcutter.ruler": "Lineal",
   "item.woodcutter.deepslate_ingot": "Deepslate Ingot",
   "item.woodcutter.hardened_deepslate": "Hardened Deepslate",
-  "item.woodcutter-mod.mended_deepslate": "Mended Deepslate",
-  "item.woodcutter-mod.mended_sculk": "Mended Sculk"
+  "item.woodcutter.mended_deepslate": "Mended Deepslate",
+  "item.woodcutter.mended_sculk": "Mended Sculk"
 }

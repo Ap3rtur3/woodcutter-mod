@@ -10,7 +10,7 @@ public class ClientEntryPoint implements DataGeneratorEntrypoint {
         // TODO: config for opt-in
         pack.addProvider(ReinforcedDeepslateModelGenerator::new);
         pack.addProvider(ReinforcedDeepslateRecipeProvider::new);
+        pack.addProvider(ReinforcedDeepslateLootTableGenerator::new);
         pack.addProvider(WoodcutterRecipeProvider::new);
-        pack.addProvider(LootTableGenerator::new);
     }
 }
