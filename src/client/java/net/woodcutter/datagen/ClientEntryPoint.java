@@ -8,9 +8,9 @@ public class ClientEntryPoint implements DataGeneratorEntrypoint {
     public void onInitializeDataGenerator(FabricDataGenerator fabricDataGenerator) {
         var pack = fabricDataGenerator.createPack();
         // TODO: config for opt-in
-        pack.addProvider(ReinforcedDeepslateModelGenerator::new);
+        pack.addProvider(ReinforcedDeepslateModelProvider::new);
         pack.addProvider(ReinforcedDeepslateRecipeProvider::new);
-        pack.addProvider(ReinforcedDeepslateLootTableGenerator::new);
+        pack.addProvider(ReinforcedDeepslateLootTableProvider::new);
         pack.addProvider(WoodcutterRecipeProvider::new);
     }
 }

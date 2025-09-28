@@ -8,9 +8,9 @@ import net.minecraft.client.data.Models;
 import net.woodcutter.ModBlocks;
 import net.woodcutter.ModItems;
 
-public class ReinforcedDeepslateModelGenerator extends FabricModelProvider {
+public class ReinforcedDeepslateModelProvider extends FabricModelProvider {
 
-    public ReinforcedDeepslateModelGenerator(FabricDataOutput output) {
+    public ReinforcedDeepslateModelProvider(FabricDataOutput output) {
         super(output);
     }
 

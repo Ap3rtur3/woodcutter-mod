@@ -14,8 +14,8 @@
   "text.autoconfig.woodcutter.option.rulerHud.enabled": "Enabled",
   "key.woodcutter.mark-block": "Markiert Block für Lineal",
   "category.woodcutter.ruler": "Lineal",
+  "block.woodcutter.hardened_deepslate": "Hardened Deepslate",
+  "block.woodcutter.mended_deepslate": "Mended Deepslate",
   "item.woodcutter.deepslate_ingot": "Deepslate Ingot",
-  "item.woodcutter.hardened_deepslate": "Hardened Deepslate",
-  "item.woodcutter.mended_deepslate": "Mended Deepslate",
   "item.woodcutter.mended_sculk": "Mended Sculk"
 }

@@ -7,9 +7,9 @@ import net.woodcutter.ModBlocks;
 
 import java.util.concurrent.CompletableFuture;
 
-public class ReinforcedDeepslateLootTableGenerator extends FabricBlockLootTableProvider {
+public class ReinforcedDeepslateLootTableProvider extends FabricBlockLootTableProvider {
 
-    protected ReinforcedDeepslateLootTableGenerator(FabricDataOutput dataOutput, CompletableFuture<RegistryWrapper.WrapperLookup> registryLookup) {
+    public ReinforcedDeepslateLootTableProvider(FabricDataOutput dataOutput, CompletableFuture<RegistryWrapper.WrapperLookup> registryLookup) {
         super(dataOutput, registryLookup);
     }
 

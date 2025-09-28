@@ -27,7 +27,7 @@ public class WoodcutterConfig implements ConfigData {
 
         @ConfigEntry.Gui.Tooltip
         @ConfigEntry.ColorPicker
-        public int fontColor = 0xFFFFFF;
+        public int fontColor = 0xFFFFFFFF;
 
         //@ConfigEntry.Gui.EnumHandler(option = ConfigEntry.Gui.EnumHandler.EnumDisplayOption.BUTTON)
         public Position position = Position.TOP_LEFT;

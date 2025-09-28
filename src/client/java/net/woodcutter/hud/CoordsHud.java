@@ -4,13 +4,15 @@ import me.shedaniel.autoconfig.gui.registry.GuiRegistry;
 import me.shedaniel.clothconfig2.api.AbstractConfigListEntry;
 import me.shedaniel.clothconfig2.api.ConfigEntryBuilder;
 import me.shedaniel.clothconfig2.gui.entries.DropdownBoxEntry;
-import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
+import net.fabricmc.fabric.api.client.rendering.v1.hud.HudElementRegistry;
+import net.fabricmc.fabric.api.client.rendering.v1.hud.VanillaHudElements;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.text.Text;
+import net.woodcutter.Constants;
+import net.woodcutter.WoodcutterMod;
 import net.woodcutter.config.WoodcutterConfig;
 import net.woodcutter.util.HudHelper;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.Field;
 import java.util.List;
@@ -21,7 +23,7 @@ public class CoordsHud {
     public static final int TEXT_MARGIN = 1;
     public static final float FONT_SCALE_MIN = .6F;
     public static final float FONT_SCALE_STEP = .2F;
-    private static final Logger log = LoggerFactory.getLogger(CoordsHud.class);
+    private static final Logger log = WoodcutterMod.logger("coords-hud");
 
     public static void register(GuiRegistry guiRegistry) {
         // Transforms position field to enum list, this fixes translations in button
@@ -29,14 +31,15 @@ public class CoordsHud {
                 (guis, i18n, field, config, defaults, registry) -> CoordsHud.dropdownToEnumList(guis, field), 
                 field -> field.getName().equals("position"));
 
-        HudRenderCallback.EVENT.register((drawContext, renderTickCounter) -> {
-            WoodcutterConfig config = getConfig();
+        HudElementRegistry.attachElementBefore(VanillaHudElements.CHAT, Constants.idOf("coords-hud"), (drawContext, renderTickCounter) -> {
+            WoodcutterConfig config = getConfig(); // maybe create reference?
             if (!config.coordsHud.enabled) {
                 return;
             }
-            var client = MinecraftClient.getInstance();
-            var player  = client.player;
-            assert player != null;
+            var player = MinecraftClient.getInstance().player;
+            if (player == null) {
+                return;
+            }
 
             int x = (int) player.getX();
             int y = (int) player.getY();
@@ -65,10 +68,10 @@ public class CoordsHud {
                             }
                         })
                         .setEnumNameProvider(perspective -> switch ((WoodcutterConfig.Position) perspective) {
-                            case TOP_LEFT -> Text.translatable("text.autoconfig.woodcutter-mod.option.coordsHud.position.TOP_LEFT");
-                            case TOP_RIGHT -> Text.translatable("text.autoconfig.woodcutter-mod.option.coordsHud.position.TOP_RIGHT");
-                            case BOTTOM_LEFT -> Text.translatable("text.autoconfig.woodcutter-mod.option.coordsHud.position.BOTTOM_LEFT");
-                            case BOTTOM_RIGHT -> Text.translatable("text.autoconfig.woodcutter-mod.option.coordsHud.position.BOTTOM_RIGHT");
+                            case TOP_LEFT -> Text.translatable("text.autoconfig.woodcutter.option.coordsHud.position.TOP_LEFT");
+                            case TOP_RIGHT -> Text.translatable("text.autoconfig.woodcutter.option.coordsHud.position.TOP_RIGHT");
+                            case BOTTOM_LEFT -> Text.translatable("text.autoconfig.woodcutter.option.coordsHud.position.BOTTOM_LEFT");
+                            case BOTTOM_RIGHT -> Text.translatable("text.autoconfig.woodcutter.option.coordsHud.position.BOTTOM_RIGHT");
                         })
                         .build())
                 .map(AbstractConfigListEntry.class::cast)
