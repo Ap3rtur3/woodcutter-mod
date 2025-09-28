@@ -12,7 +12,7 @@ import java.util.function.Function;
 public class ModItems {
 
     public static void initialize() {
-        // Needs to be called on mod intialization, so items get registered before registries freeze.
+        // Needs to be called on mod initialization, so items get registered before registries freeze.
     }
 
     public static Item register(String name, Function<Item.Settings, Item> itemFactory, Item.Settings settings) {

@@ -1,11 +1,11 @@
 # Woodcutter Mod
 
 Enables stonecutter to provide recipes for wooden stairs, planks, slabs, etc.
-Also has some QOL features listed below.
+Also has some QoL features listed below.
 
 Useful commands:
 * `./gradlew tasks` to see available commands.
-* `./gradlew runDatagen` to generate recipes.
+* `./gradlew runDatagen` to generate assets.
 * `./gradlew build` to build project.
 
 Useful Docs:
@@ -15,6 +15,7 @@ Useful Docs:
 ## Features
 
 * Woodcutter recipes: Stonecutter can also process wood
+* Deepslate recipes: New recipes for deepslate.
 * Coordinates HUD: Customizable coordinates on screen without F3 or Xaeros minimap
 
 #### Planned
@@ -66,6 +67,7 @@ TODO: Better documentation, not just RTFM. -> List requirements and install guid
 4. You should be able to build the project now :)
 
    ```bash
+   ./gradlew runDatagen
    ./gradlew build
    ```
 

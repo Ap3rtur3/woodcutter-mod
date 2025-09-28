@@ -20,7 +20,7 @@ public class ModBlocks {
                     .mapColor(MapColor.DEEPSLATE_GRAY)
                     .instrument(NoteBlockInstrument.BASEDRUM)
                     .requiresTool()
-                    .strength(2.0F, 60.0F)
+                    .strength(1.0F, 60.0F)
                     .sounds(BlockSoundGroup.DEEPSLATE)
     );
 
@@ -31,7 +31,7 @@ public class ModBlocks {
                     .mapColor(MapColor.DEEPSLATE_GRAY)
                     .instrument(NoteBlockInstrument.BASEDRUM)
                     .requiresTool()
-                    .strength(3.5F, 1200.0F)
+                    .strength(2.5F, 1200.0F)
                     .sounds(BlockSoundGroup.DEEPSLATE)
     );
 
