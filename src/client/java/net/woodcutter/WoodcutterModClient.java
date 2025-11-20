@@ -6,7 +6,7 @@ import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 import net.fabricmc.api.ClientModInitializer;
 import net.woodcutter.config.ModConfig;
 import net.woodcutter.hud.CoordsHud;
-import net.woodcutter.hud.RulerHud;
+//import net.woodcutter.hud.RulerHud;
 
 public class WoodcutterModClient implements ClientModInitializer {
 	@Override
@@ -14,7 +14,7 @@ public class WoodcutterModClient implements ClientModInitializer {
 		AutoConfig.register(ModConfig.class, GsonConfigSerializer::new);
 		GuiRegistry guiRegistry = AutoConfig.getGuiRegistry(ModConfig.class);
 		CoordsHud.register(guiRegistry);
-		RulerHud.register();
+		//RulerHud.register();
 	}
 
 	public static ModConfig getConfig() {
