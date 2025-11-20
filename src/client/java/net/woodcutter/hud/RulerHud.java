@@ -10,7 +10,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.BlockPos;
-import net.woodcutter.config.WoodcutterConfig;
+import net.woodcutter.config.ModConfig;
 import net.woodcutter.util.HudHelper;
 import org.lwjgl.glfw.GLFW;
 import org.slf4j.Logger;
@@ -42,11 +42,11 @@ public class RulerHud {
             if (!isEnabled()) {
                 return;
             }
-            WoodcutterConfig config = getConfig();
+            ModConfig config = getConfig();
             markLookedAtBlock();
             if (markedBlocks.hasBaseAndHead()) {
                 String str = String.format("%s -> %s | %s", markedBlocks.getStart().toShortString(), markedBlocks.getEnd().toShortString(), (int) markedBlocks.distance());
-                HudHelper.drawScaledTextFromOrigin(drawContext, Text.literal(str), WoodcutterConfig.Position.TOP_LEFT,.6F, .6F, 1, 1F, 0xffffffff, true);
+                HudHelper.drawScaledTextFromOrigin(drawContext, Text.literal(str), ModConfig.Position.TOP_LEFT,.6F, .6F, 1, 1F, 0xffffffff, true);
             }
         });
     }

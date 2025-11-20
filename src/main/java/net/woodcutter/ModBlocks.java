@@ -13,6 +13,10 @@ import static net.woodcutter.Constants.idOf;
 
 public class ModBlocks {
 
+    public static void initialize() {
+        // Needs to be called on mod initialization, so items get registered before registries freeze.
+    }
+
     public static final Block MENDED_DEEPSLATE = Blocks.register(
             RegistryKey.of(RegistryKeys.BLOCK, idOf("mended_deepslate")),
             Block::new,
@@ -31,7 +35,7 @@ public class ModBlocks {
                     .mapColor(MapColor.DEEPSLATE_GRAY)
                     .instrument(NoteBlockInstrument.BASEDRUM)
                     .requiresTool()
-                    .strength(2.5F, 1200.0F)
+                    .strength(1.5F, 1200.0F)
                     .sounds(BlockSoundGroup.DEEPSLATE)
     );
 

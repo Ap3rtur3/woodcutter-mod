@@ -3,14 +3,17 @@ package net.woodcutter.config;
 import me.shedaniel.autoconfig.ConfigData;
 import me.shedaniel.autoconfig.annotation.Config;
 import me.shedaniel.autoconfig.annotation.ConfigEntry;
+import net.minecraft.util.Colors;
 import net.woodcutter.WoodcutterMod;
 import org.lwjgl.glfw.GLFW;
 
 @Config(name = WoodcutterMod.MOD_ID)
 @Config.Gui.Background("cloth-config2:transparent")
-public class WoodcutterConfig implements ConfigData {
+public class ModConfig implements ConfigData {
 
-    private WoodcutterConfig() {}
+    private ModConfig() {
+        // has to be here for some reason
+    }
 
     public enum Position {
         TOP_LEFT,
@@ -27,7 +30,7 @@ public class WoodcutterConfig implements ConfigData {
 
         @ConfigEntry.Gui.Tooltip
         @ConfigEntry.ColorPicker
-        public int fontColor = 0xFFFFFFFF;
+        public int fontColor = Colors.WHITE;
 
         //@ConfigEntry.Gui.EnumHandler(option = ConfigEntry.Gui.EnumHandler.EnumDisplayOption.BUTTON)
         public Position position = Position.TOP_LEFT;
@@ -36,7 +39,14 @@ public class WoodcutterConfig implements ConfigData {
     public static class RulerHud {
         public boolean enabled = false;
 
+        // TODO
         public int keyBinding = GLFW.GLFW_KEY_PERIOD;
+    }
+
+    public static class Alchemist {
+        public boolean enabled = true;
+
+
     }
 
     @ConfigEntry.Gui.CollapsibleObject(startExpanded = true)

@@ -3,7 +3,8 @@ package net.woodcutter.util;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.text.Text;
-import net.woodcutter.config.WoodcutterConfig;
+import net.minecraft.util.math.ColorHelper;
+import net.woodcutter.config.ModConfig;
 import org.joml.Matrix3x2fStack;
 
 public class HudHelper {
@@ -26,7 +27,7 @@ public class HudHelper {
      * @param color Color in hex 0xAARRGGBB
      * @param shadow Draw text with shadows
      */
-    public static void drawTextOnPosition(DrawContext drawContext, Text text, WoodcutterConfig.Position position, int margin, float scale, int color, boolean shadow) {
+    public static void drawTextOnPosition(DrawContext drawContext, Text text, ModConfig.Position position, int margin, float scale, int color, boolean shadow) {
         MinecraftClient client = MinecraftClient.getInstance();
         withMatrixStack(drawContext, (matrixStack) -> {
             matrixStack.scale(scale, scale);
@@ -37,7 +38,7 @@ public class HudHelper {
             int textHeight = client.textRenderer.getWrappedLinesHeight(text, textWidth);
             int x = isPositionedLeft(position) ? margin : (int) (screenWidth * invFontScale - textWidth) - margin;
             int y = isPositionedTop(position) ? margin : (int) (screenHeight  * invFontScale - textHeight) - margin;
-            drawContext.drawText(client.textRenderer, text, x, y, color, shadow);
+            drawContext.drawText(client.textRenderer, text, x, y, ColorHelper.fullAlpha(color), shadow);
         });
     }
 
@@ -55,7 +56,7 @@ public class HudHelper {
      * @param color Color in hex 0xAARRGGBB
      * @param shadow Draw text with shadows
      */
-    public static void drawScaledTextFromOrigin(DrawContext drawContext, Text text, WoodcutterConfig.Position origin, float x, float y, int margin, float scale, int color, boolean shadow) {
+    public static void drawScaledTextFromOrigin(DrawContext drawContext, Text text, ModConfig.Position origin, float x, float y, int margin, float scale, int color, boolean shadow) {
         MinecraftClient client = MinecraftClient.getInstance();
         withMatrixStack(drawContext, (matrixStack) -> {
             matrixStack.scale(scale, scale);
@@ -77,15 +78,15 @@ public class HudHelper {
     }
 
     public static void drawScaledText(DrawContext drawContext, Text text, float x, float y, int margin, float scale, int color, boolean shadow) {
-        drawScaledTextFromOrigin(drawContext, text, WoodcutterConfig.Position.TOP_LEFT, x, y, margin, scale, color, shadow);
+        drawScaledTextFromOrigin(drawContext, text, ModConfig.Position.TOP_LEFT, x, y, margin, scale, color, shadow);
     }
 
-    private static boolean isPositionedLeft(WoodcutterConfig.Position position) {
-        return WoodcutterConfig.Position.TOP_LEFT.equals(position) || WoodcutterConfig.Position.BOTTOM_LEFT.equals(position);
+    private static boolean isPositionedLeft(ModConfig.Position position) {
+        return ModConfig.Position.TOP_LEFT.equals(position) || ModConfig.Position.BOTTOM_LEFT.equals(position);
     }
 
-    private static boolean isPositionedTop(WoodcutterConfig.Position position) {
-        return WoodcutterConfig.Position.TOP_LEFT.equals(position) || WoodcutterConfig.Position.TOP_RIGHT.equals(position);
+    private static boolean isPositionedTop(ModConfig.Position position) {
+        return ModConfig.Position.TOP_LEFT.equals(position) || ModConfig.Position.TOP_RIGHT.equals(position);
     }
 
     public interface MatrixStackCallback {

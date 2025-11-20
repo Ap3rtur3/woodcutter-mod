@@ -10,7 +10,7 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.text.Text;
 import net.woodcutter.Constants;
 import net.woodcutter.WoodcutterMod;
-import net.woodcutter.config.WoodcutterConfig;
+import net.woodcutter.config.ModConfig;
 import net.woodcutter.util.HudHelper;
 import org.slf4j.Logger;
 
@@ -32,7 +32,7 @@ public class CoordsHud {
                 field -> field.getName().equals("position"));
 
         HudElementRegistry.attachElementBefore(VanillaHudElements.CHAT, Constants.idOf("coords-hud"), (drawContext, renderTickCounter) -> {
-            WoodcutterConfig config = getConfig(); // maybe create reference?
+            ModConfig config = getConfig();
             if (!config.coordsHud.enabled) {
                 return;
             }
@@ -58,8 +58,8 @@ public class CoordsHud {
                 .filter(DropdownBoxEntry.class::isInstance)
                 .map(DropdownBoxEntry.class::cast)
                 .map(dropdown -> ConfigEntryBuilder.create()
-                        .startEnumSelector(dropdown.getFieldName(), WoodcutterConfig.Position.class, (WoodcutterConfig.Position) dropdown.getValue())
-                        .setDefaultValue((WoodcutterConfig.Position) dropdown.getDefaultValue().orElse(WoodcutterConfig.Position.TOP_LEFT))
+                        .startEnumSelector(dropdown.getFieldName(), ModConfig.Position.class, (ModConfig.Position) dropdown.getValue())
+                        .setDefaultValue((ModConfig.Position) dropdown.getDefaultValue().orElse(ModConfig.Position.TOP_LEFT))
                         .setSaveConsumer(p -> {
                             try {
                                 field.set(getConfig().coordsHud, p);
@@ -67,7 +67,7 @@ public class CoordsHud {
                                 log.error("Could not set position in cords hud", e);
                             }
                         })
-                        .setEnumNameProvider(perspective -> switch ((WoodcutterConfig.Position) perspective) {
+                        .setEnumNameProvider(perspective -> switch ((ModConfig.Position) perspective) {
                             case TOP_LEFT -> Text.translatable("text.autoconfig.woodcutter.option.coordsHud.position.TOP_LEFT");
                             case TOP_RIGHT -> Text.translatable("text.autoconfig.woodcutter.option.coordsHud.position.TOP_RIGHT");
                             case BOTTOM_LEFT -> Text.translatable("text.autoconfig.woodcutter.option.coordsHud.position.BOTTOM_LEFT");

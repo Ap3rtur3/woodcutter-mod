@@ -16,6 +16,7 @@ public class WoodcutterMod implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		LOGGER.info("Loading woodcutter mod");
+        ModBlocks.initialize();
 		ModItems.initialize();
 	}
 }

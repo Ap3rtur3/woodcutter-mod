@@ -4,7 +4,7 @@ import com.terraformersmc.modmenu.api.ConfigScreenFactory;
 import com.terraformersmc.modmenu.api.ModMenuApi;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.woodcutter.config.WoodcutterConfig;
+import net.woodcutter.config.ModConfig;
 import me.shedaniel.autoconfig.AutoConfig;
 
 import java.util.function.Consumer;
@@ -13,7 +13,7 @@ import java.util.function.Consumer;
 public class ModMenuCompat implements ModMenuApi {
 
     public ConfigScreenFactory<?> getModConfigScreenFactory() {
-        return parent -> AutoConfig.getConfigScreen(WoodcutterConfig.class, parent).get();
+        return parent -> AutoConfig.getConfigScreen(ModConfig.class, parent).get();
     }
 
     @Override

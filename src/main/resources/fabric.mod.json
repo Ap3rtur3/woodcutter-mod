@@ -45,10 +45,5 @@
 	"suggests": {
 		"modmenu": "${modmenu}",
 		"cloth": "${cloth}"
-	},
-	"custom": {
-		"modmenu": {
-			"update_checker": false
-		}
 	}
 }
